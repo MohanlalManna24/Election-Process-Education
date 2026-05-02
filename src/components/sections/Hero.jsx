@@ -1,146 +1,144 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiArrowRight, FiCheckCircle } from 'react-icons/fi';
+import { FiMapPin, FiBarChart2, FiArrowRight } from 'react-icons/fi';
+import heroBg from '../../assets/hero.png';
 
 const Hero = () => {
   return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-primary-50/80 to-white -z-10"></div>
-      <div className="absolute top-[-10%] right-[-5%] w-[40%] h-[40%] bg-primary-200/40 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-blue-200/30 rounded-full blur-3xl -z-10"></div>
+    <section
+      className="relative min-h-[90vh] flex items-center pt-24 pb-20 overflow-hidden bg-slate-950 selection:bg-blue-500/30 selection:text-white"
+    >
+      {/* Background Image with Parallax-like scale effect */}
+      <motion.div
+        initial={{ scale: 1.05 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
+        className="absolute inset-0 z-0"
+      >
+        <img
+          src={heroBg}
+          alt="Background"
+          className="w-full h-full object-cover object-center opacity-100"
+        />
+        {/* Dynamic Gradient Overlays for depth and readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-slate-950/10"></div>
+      </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center lg:text-left"
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full">
+        <div className="grid lg:grid-cols-12 gap-12 items-center">
+
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:col-span-8 text-left"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100/50 border border-primary-200 text-primary-700 font-medium text-sm mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-600"></span>
+            {/* Glowing Top Chip */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-blue-500/10 border border-blue-400/30 text-blue-300 font-semibold text-xs sm:text-sm tracking-widest uppercase mb-8 backdrop-blur-md shadow-[0_0_15px_rgba(59,130,246,0.15)]"
+            >
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
               </span>
-              Elections 2026 Approaching
-            </div>
-            
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Understand Your <br className="hidden sm:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-blue-800">
-                Democracy
-              </span>
-            </h1>
-            
-            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              Empowering citizens with knowledge. Navigate the election process step-by-step, know your rights, and make your voice heard with confidence.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-primary-700 transition-all shadow-lg shadow-primary-500/30"
+              2024 Election Period Active
+            </motion.div>
+
+            {/* Headline with Gradient */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] mb-6 text-white font-heading tracking-tight"
+            >
+              Your Vote, <br className="hidden sm:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-white">
+                Your Voice,
+              </span> <br className="hidden sm:block" />
+              Our Future
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="text-lg sm:text-xl text-slate-300 mb-10 max-w-2xl leading-relaxed font-light"
+            >
+              The official portal for secure, transparent, and accessible voting in the 2024
+              National Elections. Ensure your participation in shaping the nation's trajectory.
+            </motion.p>
+
+            {/* Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className="flex flex-col sm:flex-row items-center gap-5"
+            >
+              <button
+                className="group w-full sm:w-auto flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white px-8 py-4 rounded-xl font-bold hover:from-blue-500 hover:to-blue-400 transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] text-base"
               >
-                How to Vote
-                <FiArrowRight />
-              </motion.button>
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white text-gray-700 border border-gray-200 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition-all shadow-sm"
+                <FiMapPin className="text-xl group-hover:-translate-y-0.5 transition-transform" />
+                Find My Polling Station
+              </button>
+
+              <button
+                className="group w-full sm:w-auto flex items-center justify-center gap-3 bg-white/5 backdrop-blur-md text-white px-8 py-4 rounded-xl font-bold hover:bg-white/10 transition-all border border-white/10 hover:border-white/20 text-base"
               >
-                Check Registration
-              </motion.button>
-            </div>
-            
-            <div className="mt-10 flex items-center justify-center lg:justify-start gap-6 text-sm text-gray-500 font-medium">
-              <div className="flex items-center gap-2">
-                <FiCheckCircle className="text-green-500" />
-                <span>Secure</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <FiCheckCircle className="text-green-500" />
-                <span>Transparent</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <FiCheckCircle className="text-green-500" />
-                <span>Accessible</span>
-              </div>
-            </div>
+                <FiBarChart2 className="text-xl text-blue-400 group-hover:scale-110 transition-transform" />
+                Check Live Results
+              </button>
+            </motion.div>
+
           </motion.div>
 
-          <motion.div 
+          {/* Decorative Right Side Elements (Glassmorphism card) */}
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative lg:h-[600px] flex items-center justify-center"
+            transition={{ duration: 1, delay: 0.8 }}
+            className="hidden lg:block lg:col-span-4 relative"
           >
-            {/* Abstract visual representation of voting/democracy */}
-            <div className="relative w-full max-w-md aspect-square">
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary-600 to-blue-400 rounded-[2rem] transform rotate-3 opacity-20 blur-lg"></div>
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary-600 to-blue-400 rounded-[2rem] shadow-2xl overflow-hidden flex flex-col">
-                <div className="h-12 bg-white/10 backdrop-blur-sm border-b border-white/20 flex items-center px-6">
-                  <div className="flex gap-2">
-                    <div className="w-3 h-3 rounded-full bg-white/40"></div>
-                    <div className="w-3 h-3 rounded-full bg-white/40"></div>
-                    <div className="w-3 h-3 rounded-full bg-white/40"></div>
-                  </div>
+            <div className="absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full"></div>
+            <div className="relative bg-white/20 backdrop-blur-xl border border-white/10 p-8 rounded-3xl shadow-2xl">
+              <div className="flex items-center justify-between mb-8 pb-6 border-b border-white/10">
+                <div>
+                  <p className="text-slate-400 text-sm font-medium mb-1">Registration Status</p>
+                  <h3 className="text-white font-bold text-xl">Open Nationwide</h3>
                 </div>
-                <div className="flex-1 bg-white p-8 flex flex-col justify-between">
-                  <div className="space-y-4">
-                    <div className="h-4 w-1/3 bg-gray-200 rounded-full"></div>
-                    <div className="h-8 w-3/4 bg-gray-100 rounded-lg"></div>
-                    <div className="h-8 w-1/2 bg-gray-100 rounded-lg"></div>
-                  </div>
-                  
-                  <div className="space-y-4 mt-8">
-                    {[1, 2, 3].map((i) => (
-                      <motion.div 
-                        key={i}
-                        initial={{ x: -20, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ delay: 0.5 + (i * 0.2) }}
-                        className="flex items-center gap-4 p-4 rounded-xl border border-gray-100 bg-gray-50/50"
-                      >
-                        <div className="w-6 h-6 rounded-full border-2 border-primary-400 flex items-center justify-center">
-                          {i === 2 && <div className="w-3 h-3 rounded-full bg-primary-600"></div>}
-                        </div>
-                        <div className="flex-1 h-3 bg-gray-200 rounded-full"></div>
-                      </motion.div>
-                    ))}
-                  </div>
-                  
-                  <motion.div 
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 1.2 }}
-                    className="mt-8 h-12 w-full bg-primary-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30"
-                  >
-                    <div className="h-2 w-1/4 bg-white/50 rounded-full"></div>
-                  </motion.div>
+                <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center text-green-400 border border-green-500/30">
+                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
                 </div>
               </div>
-              
-              {/* Floating Element */}
-              <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                className="absolute -right-8 -bottom-8 bg-white p-6 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-4"
-              >
-                <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600">
-                  <FiCheckCircle size={24} />
+
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400">
+                    <FiArrowRight />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold">Verify Identity</p>
+                    <p className="text-slate-400 text-sm">Takes 2 minutes</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm text-gray-500 font-medium">Status</p>
-                  <p className="font-bold text-gray-900">Registered</p>
+                <div className="flex items-center gap-4 opacity-50">
+                  <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center text-slate-400">
+                    <FiArrowRight />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold">Cast Ballot</p>
+                    <p className="text-slate-400 text-sm">Election Day</p>
+                  </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
-          
+
         </div>
       </div>
     </section>
