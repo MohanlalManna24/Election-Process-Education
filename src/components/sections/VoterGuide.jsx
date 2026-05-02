@@ -1,91 +1,87 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FiFileText, FiCamera, FiHome, FiCreditCard, FiMail, FiPhone } from 'react-icons/fi';
+import { useLanguage } from '../../context/LanguageContext';
 
-const documents = [
-  {
-    icon: <FiCamera className="w-8 h-8" />,
-    title: "Recent Photograph",
-    description: "Passport size color photograph taken within the last 6 months with a clear background."
-  },
-  {
-    icon: <FiHome className="w-8 h-8" />,
-    title: "Proof of Address",
-    description: "Utility bill, bank passbook, rent agreement, or any official document showing your current address."
-  },
-  {
-    icon: <FiCreditCard className="w-8 h-8" />,
-    title: "Age Proof",
-    description: "Birth certificate, school leaving certificate, or passport to verify you are 18 years or older."
-  },
-  {
-    icon: <FiFileText className="w-8 h-8" />,
-    title: "Identity Proof",
-    description: "National ID, PAN card, driving license, or any government-issued photo identity card."
-  }
+const docIcons = [
+  <FiCamera className="w-8 h-8" />,
+  <FiHome className="w-8 h-8" />,
+  <FiCreditCard className="w-8 h-8" />,
+  <FiFileText className="w-8 h-8" />,
+];
+const docStyles = [
+  { color: 'text-blue-500', bg: 'bg-blue-100' },
+  { color: 'text-violet-500', bg: 'bg-violet-100' },
+  { color: 'text-yellow-600', bg: 'bg-yellow-100' },
+  { color: 'text-blue-500', bg: 'bg-blue-100' },
 ];
 
 const VoterGuide = () => {
+  const { t } = useLanguage();
+  const docs = t('guide.docs');
+
   return (
-    <section id="guide" className="py-24 bg-gray-50">
+    <section id="guide" className="py-24 relative">
+      <div className="absolute inset-0 bg-gradient-to-t from-violet-50/50 to-transparent -z-10"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Voter Registration Guide</h2>
-          <p className="text-lg text-gray-600">
-            Getting ready to vote? Make sure you have the required documents before starting your registration process.
-          </p>
-        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900 font-heading">{t('guide.title')}</h2>
+          <p className="text-lg text-gray-600">{t('guide.subtitle')}</p>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {documents.map((doc, index) => (
+          {Array.isArray(docs) && docs.map((doc, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -10, scale: 1.02 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="bg-white/70 backdrop-blur-xl rounded-3xl p-8 shadow-lg shadow-violet-100/50 border border-white hover:shadow-xl hover:shadow-violet-200/50 transition-all duration-300"
             >
-              <div className="w-16 h-16 rounded-2xl bg-primary-50 text-primary-600 flex items-center justify-center mb-6">
-                {doc.icon}
-              </div>
-              <h3 className="text-xl font-bold mb-3">{doc.title}</h3>
-              <p className="text-gray-600 leading-relaxed text-sm">
-                {doc.description}
-              </p>
+              <motion.div
+                whileHover={{ rotate: 5, scale: 1.1 }}
+                className={`w-16 h-16 rounded-2xl ${docStyles[index].bg} ${docStyles[index].color} flex items-center justify-center mb-6 shadow-sm`}
+              >
+                {docIcons[index]}
+              </motion.div>
+              <h3 className="text-xl font-bold mb-3 text-gray-900">{doc.title}</h3>
+              <p className="text-gray-600 leading-relaxed text-sm">{doc.desc}</p>
             </motion.div>
           ))}
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="mt-16 bg-primary-900 rounded-3xl p-8 md:p-12 text-white overflow-hidden relative"
+          className="mt-20 bg-gradient-to-r from-violet-500 via-blue-500 to-blue-400 rounded-3xl p-8 md:p-12 text-white overflow-hidden relative shadow-2xl shadow-blue-500/20"
         >
-          {/* Abstract circles */}
-          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-64 h-64 bg-primary-600/30 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-64 h-64 bg-blue-500/30 rounded-full blur-3xl"></div>
-          
+          <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }} transition={{ duration: 5, repeat: Infinity }} className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-80 h-80 bg-white/20 rounded-full blur-3xl"></motion.div>
+          <motion.div animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.4, 0.2] }} transition={{ duration: 7, repeat: Infinity }} className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-80 h-80 bg-yellow-300/20 rounded-full blur-3xl"></motion.div>
+
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="max-w-xl text-center md:text-left">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">Need help with your application?</h3>
-              <p className="text-primary-100 mb-0">
-                Our support team is available to assist you with any questions regarding the voter registration process.
-              </p>
+              <h3 className="text-3xl md:text-4xl font-extrabold mb-4 font-heading text-white drop-shadow-md">{t('guide.helpTitle')}</h3>
+              <p className="text-blue-50 text-lg mb-0 font-medium">{t('guide.helpSubtitle')}</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
-              <button className="flex items-center justify-center gap-2 bg-white text-primary-900 px-6 py-3 rounded-xl font-bold hover:bg-gray-100 transition-colors">
-                <FiPhone /> Call Helpline
-              </button>
-              <button className="flex items-center justify-center gap-2 bg-primary-800 border border-primary-700 text-white px-6 py-3 rounded-xl font-bold hover:bg-primary-700 transition-colors">
-                <FiMail /> Email Support
-              </button>
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex items-center justify-center gap-2 bg-yellow-400 text-yellow-950 px-8 py-4 rounded-xl font-bold hover:bg-yellow-300 transition-colors shadow-lg">
+                <FiPhone className="w-5 h-5" /> {t('guide.callBtn')}
+              </motion.button>
+              <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex items-center justify-center gap-2 bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-colors shadow-lg">
+                <FiMail className="w-5 h-5" /> {t('guide.emailBtn')}
+              </motion.button>
             </div>
           </div>
         </motion.div>
-
       </div>
     </section>
   );
