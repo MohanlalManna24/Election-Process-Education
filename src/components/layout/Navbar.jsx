@@ -48,7 +48,7 @@ const Navbar = () => {
         transition={{ duration: 0.5 }}
         className={`fixed w-full z-50 transition-all duration-300 ${scrolled
           ? 'bg-white/90 backdrop-blur-xl shadow-lg border-b border-violet-100/50 py-2'
-          : 'bg-transparent py-4'
+          : 'bg-gradient-to-b from-black/40 to-transparent md:bg-transparent md:from-transparent py-4'
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -221,12 +221,12 @@ const Navbar = () => {
               <div className="px-4 py-6 space-y-2">
                 {navLinks.map((link) => (
                   <a
-                    key={link.name}
+                    key={link.nameKey}
                     href={link.href}
                     className="block px-4 py-3 rounded-xl text-lg font-bold text-gray-800 hover:text-violet-600 hover:bg-violet-50 transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
-                    {link.name}
+                    {t(link.nameKey)}
                   </a>
                 ))}
                 <div className="pt-4">
