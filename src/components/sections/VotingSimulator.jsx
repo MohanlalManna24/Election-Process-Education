@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiCheckCircle, FiInfo, FiAlertCircle } from 'react-icons/fi';
 import { useLanguage } from '../../context/LanguageContext';
@@ -16,24 +16,37 @@ const VotingSimulator = () => {
   const [showVVPAT, setShowVVPAT] = useState(false);
   const { t } = useLanguage();
 
+  const vvpatTimerRef = useRef(null);
+  const voteTimerRef = useRef(null);
+
+  // Cleanup timers on unmount
+  useEffect(() => {
+    return () => {
+      clearTimeout(voteTimerRef.current);
+      clearTimeout(vvpatTimerRef.current);
+    };
+  }, []);
+
   const handleVote = (candidate) => {
     if (hasVoted) return;
-    
+
     setSelectedCandidate(candidate);
-    
+
     // Simulate the EVM beep and VVPAT process
-    setTimeout(() => {
+    voteTimerRef.current = setTimeout(() => {
       setShowVVPAT(true);
       setHasVoted(true);
-      
+
       // Hide VVPAT slip after 7 seconds (like in real life)
-      setTimeout(() => {
+      vvpatTimerRef.current = setTimeout(() => {
         setShowVVPAT(false);
       }, 7000);
     }, 500);
   };
 
   const resetSimulator = () => {
+    clearTimeout(voteTimerRef.current);
+    clearTimeout(vvpatTimerRef.current);
     setSelectedCandidate(null);
     setHasVoted(false);
     setShowVVPAT(false);

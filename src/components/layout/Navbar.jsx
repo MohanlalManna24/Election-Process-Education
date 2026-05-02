@@ -13,10 +13,12 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState(languages[0]);
   const [showToast, setShowToast] = useState(false);
   const { scrollY } = useScroll();
-  const { setLang, t } = useLanguage();
+  const { setLang, t, lang } = useLanguage();
+
+  // Derive currentLang from context — always in sync
+  const currentLang = languages.find((l) => l.code === lang) ?? languages[0];
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 50);
@@ -32,8 +34,7 @@ const Navbar = () => {
   ];
 
   const handleLangChange = (lang) => {
-    setCurrentLang(lang);
-    setLang(lang.code);  // <-- updates global language context
+    setLang(lang.code);
     setLangOpen(false);
     setIsOpen(false);
     setShowToast(true);

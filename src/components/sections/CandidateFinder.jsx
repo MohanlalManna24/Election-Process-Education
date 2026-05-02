@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiSearch, FiMapPin, FiBookOpen, FiAward, FiBriefcase, FiUser } from 'react-icons/fi';
+import { useLanguage } from '../../context/LanguageContext';
 
 const candidateDB = {
   "110001": [ // Example Pincode (New Delhi)
@@ -17,6 +18,7 @@ const CandidateFinder = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState(null);
+  const { t } = useLanguage();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -47,10 +49,10 @@ const CandidateFinder = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-violet-600 font-bold tracking-wider uppercase text-sm mb-4 block">Know Your Candidate</span>
-          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900 font-heading">Make an Informed Choice</h2>
+          <span className="text-violet-600 font-bold tracking-wider uppercase text-sm mb-4 block">{t('candidate.badge')}</span>
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-gray-900 font-heading">{t('candidate.title')}</h2>
           <p className="text-lg text-gray-600">
-            Enter your Pincode or Constituency name to discover the candidates contesting in your area. Read their manifestos and background details.
+            {t('candidate.subtitle')}
           </p>
         </div>
 
@@ -69,7 +71,7 @@ const CandidateFinder = () => {
               type="text" 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              placeholder="Enter Pincode (e.g., 110001, 700001)..." 
+              placeholder={t('candidate.placeholder')} 
               className="w-full bg-white border-2 border-violet-200 rounded-full py-5 pl-16 pr-40 text-lg font-medium text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-violet-500 focus:ring-4 focus:ring-violet-500/20 shadow-lg shadow-violet-100 transition-all"
             />
             <button 
@@ -79,7 +81,7 @@ const CandidateFinder = () => {
               {isLoading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
               ) : (
-                <><FiSearch /> Search</>
+                <>‍<FiSearch /> {t('candidate.searchBtn')}</>
               )}
             </button>
           </form>
@@ -95,7 +97,7 @@ const CandidateFinder = () => {
               exit={{ opacity: 0, y: -20 }}
             >
               <h3 className="text-2xl font-bold text-gray-800 mb-8 text-center">
-                Candidates found for <span className="text-violet-600">"{searchTerm}"</span>
+                {t('candidate.resultsFor')} <span className="text-violet-600">"{searchTerm}"</span>
               </h3>
               
               <div className="grid md:grid-cols-2 gap-8">
@@ -122,25 +124,25 @@ const CandidateFinder = () => {
                     <div className="grid grid-cols-2 gap-4 mb-6 flex-1">
                       <div className="bg-gray-50 p-4 rounded-xl">
                         <div className="flex items-center gap-2 text-gray-500 text-sm font-medium mb-1">
-                           <FiBookOpen /> Education
+                           <FiBookOpen /> {t('candidate.education')}
                         </div>
                         <p className="font-semibold text-gray-800">{candidate.education}</p>
                       </div>
                       <div className="bg-gray-50 p-4 rounded-xl">
                         <div className="flex items-center gap-2 text-gray-500 text-sm font-medium mb-1">
-                           <FiBriefcase /> Profession
+                           <FiBriefcase /> {t('candidate.profession')}
                         </div>
                         <p className="font-semibold text-gray-800">{candidate.profession}</p>
                       </div>
                       <div className="bg-gray-50 p-4 rounded-xl">
                         <div className="flex items-center gap-2 text-gray-500 text-sm font-medium mb-1">
-                           <FiUser /> Age
+                           <FiUser /> {t('candidate.age')}
                         </div>
-                        <p className="font-semibold text-gray-800">{candidate.age} Years</p>
+                        <p className="font-semibold text-gray-800">{candidate.age} {t('candidate.years')}</p>
                       </div>
                       <div className={`p-4 rounded-xl ${candidate.cases > 0 ? 'bg-red-50' : 'bg-green-50'}`}>
                         <div className={`flex items-center gap-2 text-sm font-medium mb-1 ${candidate.cases > 0 ? 'text-red-500' : 'text-green-600'}`}>
-                           <FiAward /> Criminal Cases
+                           <FiAward /> {t('candidate.criminalCases')}
                         </div>
                         <p className={`font-semibold ${candidate.cases > 0 ? 'text-red-700' : 'text-green-700'}`}>{candidate.cases}</p>
                       </div>
@@ -148,7 +150,7 @@ const CandidateFinder = () => {
 
                     <div className="bg-gradient-to-br from-violet-50 to-blue-50 p-5 rounded-2xl border border-violet-100">
                       <h5 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
-                        🌟 Manifesto Highlights
+                        🌟 {t('candidate.manifesto')}
                       </h5>
                       <ul className="space-y-2">
                         {candidate.highlights.map((highlight, i) => (

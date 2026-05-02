@@ -3,10 +3,10 @@ import { motion, useInView } from 'framer-motion';
 import { useLanguage } from '../../context/LanguageContext';
 
 const statData = [
-  { value: 900, suffix: 'M+', color: 'text-blue-500', bg: 'bg-blue-100', labelKey: 'stats.stat1Label', descKey: 'Registered nationwide' },
-  { value: 1.2, suffix: 'M', color: 'text-violet-500', bg: 'bg-violet-100', labelKey: 'stats.stat2Label', descKey: 'Across all regions' },
-  { value: 67, suffix: '%', color: 'text-yellow-600', bg: 'bg-yellow-100', labelKey: 'stats.stat4Label', descKey: 'In the last general election' },
-  { value: 15, suffix: 'M', color: 'text-blue-400', bg: 'bg-blue-50', labelKey: 'stats.stat3Label', descKey: 'Contesting nationwide' },
+  { value: 900, suffix: 'M+', color: 'text-blue-500', bg: 'bg-blue-100', labelKey: 'stats.stat1Label', descKey: 'stats.stat1Desc' },
+  { value: 1.2, suffix: 'M', color: 'text-violet-500', bg: 'bg-violet-100', labelKey: 'stats.stat2Label', descKey: 'stats.stat2Desc' },
+  { value: 67, suffix: '%', color: 'text-yellow-600', bg: 'bg-yellow-100', labelKey: 'stats.stat4Label', descKey: 'stats.stat4Desc' },
+  { value: 15, suffix: 'M', color: 'text-blue-400', bg: 'bg-blue-50', labelKey: 'stats.stat3Label', descKey: 'stats.stat3Desc' },
 ];
 
 const useCounter = (end, duration = 2) => {
@@ -17,22 +17,28 @@ const useCounter = (end, duration = 2) => {
   useEffect(() => {
     if (!isInView) return;
 
+    let rafId = null;
     let startTimestamp = null;
+
     const step = (timestamp) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
-      
       const easeOutQuart = 1 - Math.pow(1 - progress, 4);
       setCount(easeOutQuart * end);
 
       if (progress < 1) {
-        window.requestAnimationFrame(step);
+        rafId = window.requestAnimationFrame(step);
       } else {
         setCount(end);
       }
     };
 
-    window.requestAnimationFrame(step);
+    rafId = window.requestAnimationFrame(step);
+
+    // Cleanup: cancel animation frame on unmount or re-trigger
+    return () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
   }, [isInView, end, duration]);
 
   return { count, nodeRef };
@@ -58,7 +64,7 @@ const StatCard = ({ stat, index, t }) => {
         </div>
       </div>
       <h4 className="text-xl font-semibold text-gray-800 mb-2">{t(stat.labelKey)}</h4>
-      <p className="text-sm text-gray-500">{stat.descKey}</p>
+      <p className="text-sm text-gray-500">{t(stat.descKey)}</p>
     </motion.div>
   );
 };

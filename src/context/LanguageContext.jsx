@@ -114,6 +114,21 @@ const translations = {
         { q: 'Can I vote if my name is not on the electoral roll?', a: 'No. Your name must be on the electoral roll to vote. You can verify your registration at voters.eci.gov.in or at your local ERO office.' },
       ],
     },
+    // Candidate Finder
+    candidate: {
+      badge: 'Know Your Candidate',
+      title: 'Make an Informed Choice',
+      subtitle: 'Enter your Pincode or Constituency name to discover the candidates contesting in your area.',
+      placeholder: 'Enter Pincode (e.g., 110001, 700001)...',
+      searchBtn: 'Search',
+      resultsFor: 'Candidates found for',
+      education: 'Education',
+      profession: 'Profession',
+      age: 'Age',
+      years: 'Years',
+      criminalCases: 'Criminal Cases',
+      manifesto: 'Manifesto Highlights',
+    },
   },
 
   bn: {
@@ -189,7 +204,7 @@ const translations = {
       resetBtn: 'সিমুলেটর রিসেট করুন',
     },
     footer: {
-      tagline: 'নাগরিকদের সঠিক, সহজলভ্য এবং সময়মত তথ্য দিয়ে গণতান্ত্রিক নির্বাচন প্রক্রিয়ায় ক্ষমতায়ন করা।',
+      tagline: 'নাগরিকদের আত্মবিশ্বাসের সাথে ভোট দেওয়ার জ্ঞান দিয়ে তাদের দেশের ভবিষ্যৎ গড়ার ক্ষমতায়ন করা।',
       quickLinks: 'দ্রুত লিঙ্ক',
       resources: 'অফিসিয়াল রিসোর্স',
       newsletter: 'নিউজলেটার',
@@ -215,15 +230,27 @@ const translations = {
         { q: 'ভোটার তালিকায় নাম না থাকলে কি ভোট দিতে পারব?', a: 'না। ভোট দিতে আপনার নাম ভোটার তালিকায় থাকতে হবে। আপনি voters.eci.gov.in-এ বা আপনার স্থানীয় ERO অফিসে আপনার নিবন্ধন যাচাই করতে পারবেন।' },
       ],
     },
+    // Candidate Finder
+    candidate: {
+      badge: 'প্রার্থীকে জানুন',
+      title: 'সচেতন পছন্দ করুন',
+      subtitle: 'আপনার এলাকার প্রার্থীদের জানতে পিনকোড বা নির্বাচনী এলাকার নাম লিখুন।',
+      placeholder: 'পিনকোড লিখুন (যেমন: ১১০০০১, ৭০০০০১)...',
+      searchBtn: 'অনুসন্ধান',
+      resultsFor: 'প্রার্থী পাওয়া গেছে',
+      education: 'শিক্ষা',
+      profession: 'পেশা',
+      age: 'বয়স',
+      years: 'বছর',
+      criminalCases: 'ফৌজদারি মামলা',
+      manifesto: 'ইশতেহারের মূল বিষয়',
+    },
     news: {
       badge: 'অফিসিয়াল নির্বাচনী সংবাদ',
       subtitle: 'জাতীয় নির্বাচন কমিশন থেকে সরাসরি যাচাইকৃত আপডেট।',
       allUpdates: 'সব আপডেট',
     },
-    footer: {
-      tagline: 'নাগরিকদের আত্মবিশ্বাসের সাথে ভোট দেওয়ার জ্ঞান দিয়ে তাদের দেশের ভবিষ্যৎ গড়ার ক্ষমতায়ন করা।',
-      rights: '© ২০২৪ ইলেকশনগাইড। সর্বস্বত্ব সংরক্ষিত।',
-    },
+
   },
 
   hi: {
@@ -299,7 +326,7 @@ const translations = {
       resetBtn: 'सिम्युलेटर रीसेट करें',
     },
     footer: {
-      tagline: 'नागरिकों को लोकतांत्रिक चुनाव प्रक्रिया के बारे में सटीक, सुलभ और समय पर जानकारी देकर सशक्त बनाना।',
+      tagline: 'नागरिकों को आत्मविश्वास के साथ मतदान करने और अपने राष्ट्र का भविष्य बनाने के लिए सशक्त बनाना।',
       quickLinks: 'त्वरित लिंक',
       resources: 'आधिकारिक संसाधन',
       newsletter: 'न्यूज़लेटर',
@@ -330,10 +357,22 @@ const translations = {
       subtitle: 'राष्ट्रीय चुनाव आयोग से सीधे सत्यापित अपडेट।',
       allUpdates: 'सभी अपडेट',
     },
-    footer: {
-      tagline: 'नागरिकों को आत्मविश्वास के साथ मतदान करने और अपने राष्ट्र का भविष्य बनाने के लिए सशक्त बनाना।',
-      rights: '© 2024 ElectionGuide. सर्वाधिकार सुरक्षित।',
+    // Candidate Finder
+    candidate: {
+      badge: 'उम्मीदवार को जानें',
+      title: 'सूचित विकल्प चुनें',
+      subtitle: 'अपने क्षेत्र के उम्मीदवारों को जानने के लिए पिनकोड या निर्वाचन क्षेत्र का नाम दर्ज करें।',
+      placeholder: 'पिनकोड दर्ज करें (जैसे: 110001, 700001)...',
+      searchBtn: 'खोजें',
+      resultsFor: 'उम्मीदवार मिले',
+      education: 'शिक्षा',
+      profession: 'पेशा',
+      age: 'आयु',
+      years: 'वर्ष',
+      criminalCases: 'आपराधिक मामले',
+      manifesto: 'घोषणापत्र की मुख्य बातें',
     },
+
   },
 };
 
